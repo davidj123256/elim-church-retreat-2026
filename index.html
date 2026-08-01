@@ -205,6 +205,8 @@
   }
 
   .pay-note{font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.5;}
+  .pay-note a{color:var(--green);font-weight:700;text-decoration:none;}
+  .wa-hint{font-size:11.5px;color:var(--muted);margin-top:4px;text-align:center;}
   .no-payment-note{
     text-align:center;font-weight:700;color:var(--green);
     background:#f3f9f4;border-radius:12px;padding:16px;
@@ -322,12 +324,8 @@
 
         <div class="upi-id-box">davidj123256@okhdfcbank</div>
 
-        <div class="field" style="margin-top:16px;">
-          <label>UPI Reference / UTR Number <span style="color:var(--muted);font-weight:400;">(optional — speeds up confirmation)</span></label>
-          <input type="text" id="upiRef" placeholder="e.g. 234567891234">
-        </div>
-
-        <p class="pay-note">Already paid, or paying later? Either way, share the reference number with Mr. David Joseph (96770 62540) so we can confirm it against your registration.</p>
+        <p class="pay-note">Already paid, or paying later? Either way, please send a screenshot of the payment to <a href="https://wa.me/919677062540" target="_blank" rel="noopener">Mr. David Joseph (96770 62540)</a> so we can confirm it against your registration.</p>
+        <p class="wa-hint">Tapping the number opens a WhatsApp chat with David.</p>
       </div>
 
       <div class="card no-payment-note hidden" id="noPaymentNote">🎉 No payment required!</div>
@@ -341,16 +339,21 @@
     <div class="check">✓</div>
     <h2>You're Registered!</h2>
     <p>Thank you for signing up for the Church Retreat. A confirmation has been recorded for your registration.</p>
-    <div class="amount-due" id="successAmount">₹0 due</div>
 
-    <div id="successPayBlock" style="max-width:320px;margin:0 auto;">
-      <a href="#" id="upiPayBtnSuccess" class="upi-pay-btn">Tap to Pay via UPI App</a>
-      <div class="pay-divider">or scan with any UPI app</div>
-      <div class="qr-wrap"><img id="upiQrSuccess" alt="UPI QR code" width="180" height="180"></div>
-      <div class="upi-id-box">davidj123256@okhdfcbank</div>
+    <div id="successPaymentSection">
+      <p>If you haven't completed the payment yet, here's what's due:</p>
+      <div class="amount-due" id="successAmount">₹0</div>
+
+      <div id="successPayBlock" style="max-width:320px;margin:0 auto;">
+        <a href="#" id="upiPayBtnSuccess" class="upi-pay-btn">Tap to Pay via UPI App</a>
+        <div class="pay-divider">or scan with any UPI app</div>
+        <div class="qr-wrap"><img id="upiQrSuccess" alt="UPI QR code" width="180" height="180"></div>
+        <div class="upi-id-box">davidj123256@okhdfcbank</div>
+      </div>
+
+      <p class="pay-note">Once paid, please send a screenshot of the payment to <a href="https://wa.me/919677062540" target="_blank" rel="noopener">Mr. David Joseph (96770 62540)</a> so we can confirm it.</p>
+      <p class="wa-hint">Tapping the number opens a WhatsApp chat with David.</p>
     </div>
-
-    <p>Once paid, share your UPI reference with <strong>Mr. David Joseph (96770 62540)</strong> so we can confirm it.</p>
   </div>
 
   <footer>ELIM Apostolic Gospel Church</footer>
@@ -537,7 +540,6 @@
       contactName: document.getElementById('contactName').value.trim(),
       phone: document.getElementById('phone').value.trim(),
       email: document.getElementById('email').value.trim(),
-      upiRef: document.getElementById('upiRef').value.trim(),
       members: members,
       total: total
     };
@@ -551,13 +553,13 @@
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       });
-      document.getElementById('successAmount').textContent = `₹${total.toLocaleString('en-IN')} due`;
+      document.getElementById('successAmount').textContent = `₹${total.toLocaleString('en-IN')}`;
 
       const successNote = `Retreat-${payload.contactName || 'Registration'}`;
       const successUri = buildUpiUri(total, successNote);
       document.getElementById('upiPayBtnSuccess').setAttribute('href', successUri);
       document.getElementById('upiQrSuccess').src = qrUrlFor(successUri);
-      document.getElementById('successPayBlock').classList.toggle('hidden', total <= 0);
+      document.getElementById('successPaymentSection').classList.toggle('hidden', total <= 0);
 
       document.getElementById('formScreen').classList.add('hidden');
       document.getElementById('successScreen').style.display = 'block';
