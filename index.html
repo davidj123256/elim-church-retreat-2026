@@ -296,9 +296,9 @@
         <button type="button" class="add-btn" id="addMemberBtn">+ Add Attendee</button>
 
         <table class="fee-table">
-          <tr><td>Adults & Working Professionals</td><td>₹1,200 / head</td></tr>
-          <tr><td>Students</td><td>₹950 / head</td></tr>
-          <tr><td>Children (5–12 yrs)</td><td>₹600 / head</td></tr>
+          <tr><td>Adults & Working Professionals</td><td>₹1,200 (Fri &amp; Sat) / ₹700 (Only Sat)</td></tr>
+          <tr><td>Students</td><td>₹950 (Fri &amp; Sat) / ₹450 (Only Sat)</td></tr>
+          <tr><td>Children (5–12 yrs)</td><td>₹600 (Fri &amp; Sat) / ₹200 (Only Sat)</td></tr>
           <tr><td>Children under 5</td><td>Free</td></tr>
         </table>
 
@@ -367,12 +367,28 @@
   // ⚠️ Paste your deployed Google Apps Script Web App URL here after setup (see SETUP_INSTRUCTIONS.md)
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbygOZDhka9a5_JIP_us7ka4-oMxarbO1imXasQMHGvrTtyGmw49iHG9X6bwo86k4zWAiA/exec";
 
-  const FEES = {
-    adult:   { label: "Adult / Working Professional", fee: 1200 },
-    student: { label: "Student",                       fee: 950  },
-    child:   { label: "Child (5–12 yrs)",               fee: 600  },
-    infant:  { label: "Child under 5",                  fee: 0    }
+  const CATEGORIES = {
+    adult:   { label: "Adult / Working Professional" },
+    student: { label: "Student" },
+    child:   { label: "Child (5–12 yrs)" },
+    infant:  { label: "Child under 5" }
   };
+
+  const ATTENDANCE = {
+    full: { label: "Fri & Sat (with accommodation)" },
+    sat:  { label: "Only Sat (no accommodation)" }
+  };
+
+  const FEES = {
+    adult:   { full: 1200, sat: 700 },
+    student: { full: 950,  sat: 450 },
+    child:   { full: 600,  sat: 200 },
+    infant:  { full: 0,    sat: 0   }
+  };
+
+  function feeFor(cat, att) {
+    return FEES[cat][att];
+  }
 
   const UPI_ID = "davidj123256@okhdfcbank";
   const PAYEE_NAME = "David Joseph";
@@ -436,12 +452,19 @@
         <div class="field" style="margin-bottom:8px;">
           <label>Category <span class="req">*</span></label>
           <select class="m-category">
-            <option value="adult">Adult / Working Professional — ₹1200</option>
-            <option value="student">Student — ₹950</option>
-            <option value="child">Child (5–12) — ₹600</option>
+            <option value="adult">Adult / Working Professional</option>
+            <option value="student">Student</option>
+            <option value="child">Child (5–12)</option>
             <option value="infant">Child under 5 — Free</option>
           </select>
         </div>
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label>Attending <span class="req">*</span></label>
+        <select class="m-attendance">
+          <option value="full">Fri &amp; Sat (with accommodation)</option>
+          <option value="sat">Only Sat (no accommodation)</option>
+        </select>
       </div>
     `;
     membersEl.appendChild(div);
@@ -456,6 +479,7 @@
       calcTotal();
     });
     div.querySelector('.m-category').addEventListener('change', calcTotal);
+    div.querySelector('.m-attendance').addEventListener('change', calcTotal);
     calcTotal();
   }
 
@@ -469,7 +493,8 @@
     let total = 0;
     [...membersEl.children].forEach(m => {
       const cat = m.querySelector('.m-category').value;
-      total += FEES[cat].fee;
+      const att = m.querySelector('.m-attendance').value;
+      total += feeFor(cat, att);
     });
     totalEl.textContent = `₹${total.toLocaleString('en-IN')}`;
     updatePaymentUI(total);
@@ -533,10 +558,12 @@
 
     const members = [...membersEl.children].map(m => {
       const cat = m.querySelector('.m-category').value;
+      const att = m.querySelector('.m-attendance').value;
       return {
         name: m.querySelector('.m-name').value.trim(),
-        category: FEES[cat].label,
-        fee: FEES[cat].fee
+        category: CATEGORIES[cat].label,
+        attendance: ATTENDANCE[att].label,
+        fee: feeFor(cat, att)
       };
     });
     const total = calcTotal();

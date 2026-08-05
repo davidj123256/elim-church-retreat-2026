@@ -19,7 +19,7 @@ function doPost(e) {
     if (regSheet.getLastRow() === 0) {
       regSheet.appendRow([
         'Timestamp', 'Contact Name', 'Phone', 'Email',
-        'Attendee Name', 'Category', 'Fee (INR)',
+        'Attendee Name', 'Category', 'Attendance', 'Fee (INR)',
         'Group Total (INR)'
       ]);
       regSheet.setFrozenRows(1);
@@ -33,6 +33,7 @@ function doPost(e) {
         data.email || '',
         m.name || '',
         m.category || '',
+        m.attendance || '',
         m.fee || 0,
         data.total || 0
       ]);
