@@ -175,28 +175,6 @@
   .submit-btn:disabled{opacity:.6;cursor:not-allowed;}
 
   /* Payment */
-  .upi-pay-btn{
-    display:block;width:100%;text-align:center;
-    padding:15px;
-    background:linear-gradient(135deg,var(--green-light) 0%,var(--green) 100%);
-    color:#fff;font-weight:800;font-size:15.5px;
-    border-radius:12px;text-decoration:none;
-    box-shadow:0 6px 16px rgba(31,77,46,0.3);
-  }
-  .upi-pay-btn:active{transform:translateY(1px);}
-
-  .pay-divider{
-    display:flex;align-items:center;gap:10px;color:var(--muted);
-    font-size:12px;margin:16px 0;text-transform:uppercase;letter-spacing:.5px;
-  }
-  .pay-divider::before,.pay-divider::after{content:"";flex:1;height:1px;background:#e5e7eb;}
-
-  .qr-wrap{text-align:center;}
-  .qr-wrap img{
-    width:180px;height:180px;border-radius:10px;
-    border:1.5px solid #e2e5eb;padding:8px;background:#fff;
-  }
-
   .upi-id-box{
     background:#f3f9f4;border:1px dashed var(--green-light);
     border-radius:10px;padding:10px 14px;text-align:center;
@@ -311,23 +289,8 @@
       </div>
 
       <div class="card" id="paymentCard">
-        <p class="section-title">💳 Pay via UPI</p>
-        <p class="section-sub">Pay your registration fee now, or right after submitting — whichever's easier.</p>
-
-        <a href="#" id="upiPayBtn" class="upi-pay-btn">Pay via UPI App</a>
-
-        <div class="pay-divider">or scan with any UPI app</div>
-
-        <div class="qr-wrap">
-          <img id="upiQr" alt="UPI QR code" width="180" height="180">
-        </div>
-
-        <div class="upi-id-box">davidj123256@okhdfcbank</div>
-
-        <p class="pay-note" style="font-weight:700;">⚠️ Please enter ₹<span id="payBtnAmount">0</span> manually as the amount when paying — it won't be filled in for you.</p>
-
-        <p class="pay-note">Already paid, or paying later? Either way, please send a screenshot of the payment to <a href="https://wa.me/919677062540" target="_blank" rel="noopener">Mr. David Joseph (96770 62540)</a> so we can confirm it against your registration.</p>
-        <p class="wa-hint">Tapping the number opens a WhatsApp chat with David.</p>
+        <p class="section-title">💳 Payment</p>
+        <p class="pay-note" style="margin-top:0;">Once you register, you may pay the amount above to David Joseph via GPay, PhonePe, or WhatsApp Pay.</p>
       </div>
 
       <div class="card no-payment-note hidden" id="noPaymentNote">🎉 No payment required!</div>
@@ -343,17 +306,12 @@
     <p>Thank you for signing up for the Church Retreat.</p>
 
     <div id="successPaymentSection">
-      <p>If you haven't completed the payment yet, here's what's due:</p>
+      <p>Please pay the amount below to complete your registration:</p>
       <div class="amount-due" id="successAmount">₹0</div>
 
-      <div id="successPayBlock" style="max-width:320px;margin:0 auto;">
-        <a href="#" id="upiPayBtnSuccess" class="upi-pay-btn">Pay via UPI App</a>
-        <div class="pay-divider">or scan with any UPI app</div>
-        <div class="qr-wrap"><img id="upiQrSuccess" alt="UPI QR code" width="180" height="180"></div>
-        <div class="upi-id-box">davidj123256@okhdfcbank</div>
+      <div class="upi-id-box" style="max-width:320px;margin:0 auto;">
+        Pay via GPay / PhonePe / WhatsApp Pay to<br><strong>96770 62540</strong> (David Joseph)
       </div>
-
-      <p class="pay-note" style="font-weight:700;">⚠️ Please enter the amount above manually when paying — it won't be filled in for you.</p>
 
       <p class="pay-note">Once paid, please send a screenshot of the payment to <a href="https://wa.me/919677062540" target="_blank" rel="noopener">Mr. David Joseph (96770 62540)</a> so we can confirm it.</p>
       <p class="wa-hint">Tapping the number opens a WhatsApp chat with David.</p>
@@ -390,25 +348,6 @@
     return FEES[cat][att];
   }
 
-  const UPI_ID = "davidj123256@okhdfcbank";
-  const PAYEE_NAME = "David Joseph";
-  const UPI_TR = (Date.now().toString(36) + Math.random().toString(36).slice(2, 8)).toUpperCase();
-
-  function buildUpiUri(note) {
-    const params = new URLSearchParams({
-      pa: UPI_ID,
-      pn: PAYEE_NAME,
-      cu: "INR",
-      tn: note || "Church Retreat Registration",
-      tr: UPI_TR
-    });
-    return `upi://pay?${params.toString()}`;
-  }
-
-  function qrUrlFor(upiUri) {
-    return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(upiUri)}`;
-  }
-
   function updatePaymentUI(total) {
     const paymentCard = document.getElementById('paymentCard');
     const noPaymentNote = document.getElementById('noPaymentNote');
@@ -419,14 +358,6 @@
     }
     paymentCard.classList.remove('hidden');
     noPaymentNote.classList.add('hidden');
-
-    const contactName = document.getElementById('contactName').value.trim();
-    const note = `Retreat-${contactName || 'Registration'}`;
-    const uri = buildUpiUri(note);
-
-    document.getElementById('payBtnAmount').textContent = total.toLocaleString('en-IN');
-    document.getElementById('upiPayBtn').setAttribute('href', uri);
-    document.getElementById('upiQr').src = qrUrlFor(uri);
   }
 
   const membersEl = document.getElementById('members');
@@ -586,11 +517,6 @@
         body: JSON.stringify(payload)
       });
       document.getElementById('successAmount').textContent = `₹${total.toLocaleString('en-IN')}`;
-
-      const successNote = `Retreat-${payload.contactName || 'Registration'}`;
-      const successUri = buildUpiUri(successNote);
-      document.getElementById('upiPayBtnSuccess').setAttribute('href', successUri);
-      document.getElementById('upiQrSuccess').src = qrUrlFor(successUri);
       document.getElementById('successPaymentSection').classList.toggle('hidden', total <= 0);
 
       document.getElementById('formScreen').classList.add('hidden');
