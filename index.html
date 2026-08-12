@@ -3,19 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ELIM Church Retreat 2026 — Registration</title>
+<title>ELIM Church Retreat 2026 — Registration Closed</title>
 <style>
   :root{
     --navy:#16233f;
     --navy-dark:#0e1830;
     --green:#1f4d2e;
-    --green-light:#2d6b41;
     --gold:#e8b400;
-    --gold-dark:#c99700;
     --cream:#faf6ea;
     --ink:#22293a;
     --muted:#6b7280;
-    --danger:#c0392b;
     --radius:14px;
     --shadow:0 8px 24px rgba(22,35,63,0.12);
   }
@@ -29,7 +26,6 @@
   }
   .wrap{max-width:760px;margin:0 auto;padding:0 16px 60px;}
 
-  /* Header */
   header.hero{
     background:linear-gradient(135deg,var(--navy) 0%,var(--navy-dark) 100%);
     color:#fff;
@@ -67,160 +63,33 @@
     display:flex;align-items:center;gap:6px;
   }
 
-  /* Card */
   .card{
     background:#fff;
     border-radius:var(--radius);
     box-shadow:var(--shadow);
-    padding:24px;
+    padding:36px 24px;
     margin-top:-26px;
     position:relative;
     z-index:2;
+    text-align:center;
   }
-  .card + .card{margin-top:18px;}
-
-  .section-title{
-    font-size:18px;font-weight:700;color:var(--navy);
-    margin:0 0 4px;display:flex;align-items:center;gap:8px;
+  .card .icon{
+    width:64px;height:64px;border-radius:50%;
+    background:#f3f9f4;color:var(--green);
+    display:flex;align-items:center;justify-content:center;
+    font-size:30px;margin:0 auto 16px;
   }
-  .section-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;}
-
-  label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px;}
-  .req{color:var(--danger);}
-  input[type=text],input[type=tel],input[type=email],select,textarea{
-    width:100%;
-    padding:12px 14px;
-    border:1.5px solid #e2e5eb;
-    border-radius:10px;
-    font-size:15px;
-    font-family:inherit;
-    background:#fbfbfd;
-    transition:border-color .15s, box-shadow .15s;
-  }
-  input:focus,select:focus,textarea:focus{
-    outline:none;border-color:var(--green-light);
-    box-shadow:0 0 0 3px rgba(45,107,65,0.13);
-    background:#fff;
-  }
-  .field{margin-bottom:16px;}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  @media (max-width:520px){.grid2{grid-template-columns:1fr;}}
-
-  /* Attendee cards */
-  #members{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;}
-  .member{
-    border:1.5px solid #e9ebf0;
-    border-radius:12px;
-    padding:16px;
-    background:#fcfcfd;
-    position:relative;
-  }
-  .member .member-head{
-    display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;
-  }
-  .member .member-head span{font-weight:700;font-size:13.5px;color:var(--green);}
-  .member .remove-btn{
-    background:none;border:none;color:var(--danger);font-size:13px;
-    cursor:pointer;padding:4px 8px;font-weight:600;border-radius:6px;
-  }
-  .member .remove-btn:hover{background:#fdecea;}
-  .member .fee-tag{
-    display:inline-block;margin-top:2px;font-size:12.5px;
-    background:#eef6f0;color:var(--green);
-    padding:3px 10px;border-radius:999px;font-weight:700;
-  }
-
-  .add-btn{
-    width:100%;
-    padding:13px;
-    border:1.5px dashed var(--green-light);
-    background:#f3f9f4;
-    color:var(--green);
-    font-weight:700;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:14.5px;
-  }
-  .add-btn:hover{background:#e9f5eb;}
-
-  /* Total bar */
-  .total-bar{
-    display:flex;justify-content:space-between;align-items:center;
-    background:var(--navy);color:#fff;
-    border-radius:12px;padding:16px 20px;margin-top:18px;
-  }
-  .total-bar .label{font-size:13px;color:#cfd8ea;}
-  .total-bar .amount{font-size:26px;font-weight:800;color:var(--gold);}
-
-  .fee-table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px;}
-  .fee-table td{padding:5px 0;color:var(--muted);}
-  .fee-table td:last-child{text-align:right;font-weight:600;color:var(--ink);}
-
-  textarea{min-height:80px;resize:vertical;}
-
-  .submit-btn{
-    width:100%;
-    padding:17px;
-    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
-    color:var(--navy-dark);
-    font-weight:800;
-    font-size:16.5px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    box-shadow:0 6px 18px rgba(232,180,0,0.35);
-    letter-spacing:.3px;
-  }
-  .submit-btn:active{transform:translateY(1px);}
-  .submit-btn:disabled{opacity:.6;cursor:not-allowed;}
-
-  /* Payment */
-  .upi-id-box{
-    background:#f3f9f4;border:1px dashed var(--green-light);
-    border-radius:10px;padding:10px 14px;text-align:center;
-    font-weight:700;color:var(--green);font-size:14px;margin-top:14px;
-    letter-spacing:.2px;
-  }
-
-  .pay-note{font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.5;}
-  .pay-note a{color:var(--green);font-weight:700;text-decoration:none;}
-  .wa-hint{font-size:11.5px;color:var(--muted);margin-top:4px;text-align:center;}
-  .no-payment-note{
-    text-align:center;font-weight:700;color:var(--green);
-    background:#f3f9f4;border-radius:12px;padding:16px;
-  }
-
-  .error-msg{
-    color:var(--danger);font-size:13px;margin-top:6px;display:none;
-  }
-  .field.invalid input, .field.invalid select{border-color:var(--danger);}
-  .field.invalid .error-msg{display:block;}
+  .card h2{color:var(--navy);margin:0 0 10px;font-size:22px;}
+  .card p{color:var(--muted);max-width:460px;margin:6px auto;line-height:1.6;}
 
   .contact-line{
-    text-align:center;color:var(--muted);font-size:13px;margin-top:16px;
+    text-align:center;color:var(--muted);font-size:13px;margin-top:18px;
   }
   .contact-line a{color:var(--green);font-weight:700;text-decoration:none;}
 
   footer{
     text-align:center;color:var(--muted);font-size:12px;margin-top:26px;
   }
-
-  /* Success screen */
-  #successScreen{display:none;text-align:center;padding:50px 20px;}
-  #successScreen .check{
-    width:70px;height:70px;border-radius:50%;
-    background:var(--green);color:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-size:34px;margin:0 auto 18px;
-  }
-  #successScreen h2{color:var(--navy);margin-bottom:8px;}
-  #successScreen p{color:var(--muted);max-width:420px;margin:6px auto 6px;}
-  #successScreen .amount-due{
-    font-size:28px;font-weight:800;color:var(--green);margin:14px 0;
-  }
-
-  #formScreen.hidden, #successScreen.show{}
-  .hidden{display:none !important;}
 </style>
 </head>
 <body>
@@ -238,297 +107,17 @@
 
 <div class="wrap">
 
-  <div id="formScreen">
-    <form id="regForm" novalidate>
-
-      <div class="card">
-        <p class="section-title">👤 Your Details</p>
-        <p class="section-sub">The primary contact for this registration (we'll confirm here).</p>
-
-        <div class="field" id="f-contactName">
-          <label>Full Name <span class="req">*</span></label>
-          <input type="text" id="contactName" placeholder="Full Name" autocomplete="name">
-          <div class="error-msg">Please enter your name.</div>
-        </div>
-
-        <div class="grid2">
-          <div class="field" id="f-phone">
-            <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="phone" placeholder="98765 43210" autocomplete="tel">
-            <div class="error-msg">Please enter a valid phone number.</div>
-          </div>
-          <div class="field" id="f-email">
-            <label>Email Address <span class="req">*</span></label>
-            <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-            <div class="error-msg">Please enter a valid email.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <p class="section-title">👥 Who's Attending</p>
-        <p class="section-sub">Add everyone in your group — yourself included.</p>
-
-        <div id="members"></div>
-
-        <button type="button" class="add-btn" id="addMemberBtn">+ Add Attendee</button>
-
-        <table class="fee-table">
-          <tr><td>Adults & Working Professionals</td><td>₹1,200 (Fri &amp; Sat) / ₹700 (Only Sat)</td></tr>
-          <tr><td>Students</td><td>₹950 (Fri &amp; Sat) / ₹450 (Only Sat)</td></tr>
-          <tr><td>Children (5–12 yrs)</td><td>₹600 (Fri &amp; Sat) / ₹200 (Only Sat)</td></tr>
-          <tr><td>Children under 5</td><td>Free</td></tr>
-        </table>
-
-        <div class="total-bar">
-          <div>
-            <div class="label">Total registration fee</div>
-          </div>
-          <div class="amount" id="totalAmount">₹0</div>
-        </div>
-      </div>
-
-      <div class="card" id="paymentCard">
-        <p class="section-title">💳 Payment</p>
-        <p class="pay-note" style="margin-top:0;">Once you register, you may pay the amount above to David Joseph via GPay, PhonePe, or WhatsApp Pay.</p>
-      </div>
-
-      <div class="card no-payment-note hidden" id="noPaymentNote">🎉 No payment required!</div>
-
-      <button type="submit" class="submit-btn" id="submitBtn">Register Now →</button>
-      <p class="contact-line">Questions? Contact <strong>Mr. David Joseph</strong> — <a href="tel:9677062540">96770 62540</a></p>
-    </form>
+  <div class="card">
+    <div class="icon">🔒</div>
+    <h2>Registration Is Now Closed</h2>
+    <p>Thank you to everyone who signed up! Registration for the Church Retreat 2026 is no longer open.</p>
+    <p>If you have questions about your registration or payment, please get in touch below.</p>
   </div>
 
-  <div id="successScreen">
-    <div class="check">✓</div>
-    <h2>You're Registered!</h2>
-    <p>Thank you for signing up for the Church Retreat.</p>
-
-    <div id="successPaymentSection">
-      <p>Please pay the amount below to complete your registration:</p>
-      <div class="amount-due" id="successAmount">₹0</div>
-
-      <div class="upi-id-box" style="max-width:320px;margin:0 auto;">
-        Pay via GPay / PhonePe / WhatsApp Pay to<br><strong>96770 62540</strong> (David Joseph)
-      </div>
-
-      <p class="pay-note">Once paid, please send a screenshot of the payment to <a href="https://wa.me/919677062540" target="_blank" rel="noopener">Mr. David Joseph (96770 62540)</a> so we can confirm it.</p>
-      <p class="wa-hint">Tapping the number opens a WhatsApp chat with David.</p>
-    </div>
-  </div>
+  <p class="contact-line">Questions? Contact <strong>Mr. David Joseph</strong> — <a href="tel:9677062540">96770 62540</a></p>
 
   <footer>ELIM Apostolic Gospel Church</footer>
 </div>
-
-<script>
-  // ⚠️ Paste your deployed Google Apps Script Web App URL here after setup (see SETUP_INSTRUCTIONS.md)
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbygOZDhka9a5_JIP_us7ka4-oMxarbO1imXasQMHGvrTtyGmw49iHG9X6bwo86k4zWAiA/exec";
-
-  const CATEGORIES = {
-    adult:   { label: "Adult / Working Professional" },
-    student: { label: "Student" },
-    child:   { label: "Child (5–12 yrs)" },
-    infant:  { label: "Child under 5" }
-  };
-
-  const ATTENDANCE = {
-    full: { label: "Fri & Sat (with accommodation)" },
-    sat:  { label: "Only Sat (no accommodation)" }
-  };
-
-  const FEES = {
-    adult:   { full: 1200, sat: 700 },
-    student: { full: 950,  sat: 450 },
-    child:   { full: 600,  sat: 200 },
-    infant:  { full: 0,    sat: 0   }
-  };
-
-  function feeFor(cat, att) {
-    return FEES[cat][att];
-  }
-
-  function updatePaymentUI(total) {
-    const paymentCard = document.getElementById('paymentCard');
-    const noPaymentNote = document.getElementById('noPaymentNote');
-    if (total <= 0) {
-      paymentCard.classList.add('hidden');
-      noPaymentNote.classList.remove('hidden');
-      return;
-    }
-    paymentCard.classList.remove('hidden');
-    noPaymentNote.classList.add('hidden');
-  }
-
-  const membersEl = document.getElementById('members');
-  const totalEl = document.getElementById('totalAmount');
-  let memberCount = 0;
-
-  function addMember(prefillName) {
-    memberCount++;
-    const id = memberCount;
-    const div = document.createElement('div');
-    div.className = 'member';
-    div.dataset.id = id;
-    div.innerHTML = `
-      <div class="member-head">
-        <span>Attendee ${id}</span>
-        <button type="button" class="remove-btn">Remove</button>
-      </div>
-      <div class="grid2">
-        <div class="field" style="margin-bottom:8px;">
-          <label>Name <span class="req">*</span></label>
-          <input type="text" class="m-name" placeholder="Full name" value="${prefillName || ''}">
-        </div>
-        <div class="field" style="margin-bottom:8px;">
-          <label>Category <span class="req">*</span></label>
-          <select class="m-category">
-            <option value="adult">Adult / Working Professional</option>
-            <option value="student">Student</option>
-            <option value="child">Child (5–12)</option>
-            <option value="infant">Child under 5 — Free</option>
-          </select>
-        </div>
-      </div>
-      <div class="field" style="margin-bottom:0;">
-        <label>Attending <span class="req">*</span></label>
-        <select class="m-attendance">
-          <option value="full">Fri &amp; Sat (with accommodation)</option>
-          <option value="sat">Only Sat (no accommodation)</option>
-        </select>
-      </div>
-    `;
-    membersEl.appendChild(div);
-
-    div.querySelector('.remove-btn').addEventListener('click', () => {
-      if (membersEl.children.length <= 1) {
-        alert("At least one attendee is required.");
-        return;
-      }
-      div.remove();
-      renumberMembers();
-      calcTotal();
-    });
-    div.querySelector('.m-category').addEventListener('change', calcTotal);
-    div.querySelector('.m-attendance').addEventListener('change', calcTotal);
-    calcTotal();
-  }
-
-  function renumberMembers() {
-    [...membersEl.children].forEach((m, i) => {
-      m.querySelector('.member-head span').textContent = `Attendee ${i + 1}`;
-    });
-  }
-
-  function calcTotal() {
-    let total = 0;
-    [...membersEl.children].forEach(m => {
-      const cat = m.querySelector('.m-category').value;
-      const att = m.querySelector('.m-attendance').value;
-      total += feeFor(cat, att);
-    });
-    totalEl.textContent = `₹${total.toLocaleString('en-IN')}`;
-    updatePaymentUI(total);
-    return total;
-  }
-
-  document.getElementById('addMemberBtn').addEventListener('click', () => addMember());
-
-  // Start with one member pre-filled from contact name
-  addMember();
-
-  document.getElementById('contactName').addEventListener('input', (e) => {
-    const first = membersEl.querySelector('.member');
-    if (first && !first.dataset.touched) {
-      first.querySelector('.m-name').value = e.target.value;
-    }
-    calcTotal();
-  });
-  membersEl.addEventListener('input', (e) => {
-    if (e.target.classList.contains('m-name')) {
-      e.target.closest('.member').dataset.touched = "1";
-    }
-  });
-
-  function setInvalid(fieldId, invalid) {
-    const el = document.getElementById(fieldId);
-    if (!el) return;
-    el.classList.toggle('invalid', invalid);
-  }
-
-  function validate() {
-    let ok = true;
-    const name = document.getElementById('contactName').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-
-    setInvalid('f-contactName', !name); if (!name) ok = false;
-    const phoneOk = /^[0-9+\-\s()]{7,15}$/.test(phone);
-    setInvalid('f-phone', !phoneOk); if (!phoneOk) ok = false;
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    setInvalid('f-email', !emailOk); if (!emailOk) ok = false;
-
-    let membersOk = true;
-    [...membersEl.children].forEach(m => {
-      const n = m.querySelector('.m-name').value.trim();
-      if (!n) { m.style.borderColor = 'var(--danger)'; membersOk = false; }
-      else { m.style.borderColor = ''; }
-    });
-    if (!membersOk) ok = false;
-
-    return ok;
-  }
-
-  document.getElementById('regForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    const submitBtn = document.getElementById('submitBtn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-
-    const members = [...membersEl.children].map(m => {
-      const cat = m.querySelector('.m-category').value;
-      const att = m.querySelector('.m-attendance').value;
-      return {
-        name: m.querySelector('.m-name').value.trim(),
-        category: CATEGORIES[cat].label,
-        attendance: ATTENDANCE[att].label,
-        fee: feeFor(cat, att)
-      };
-    });
-    const total = calcTotal();
-
-    const payload = {
-      contactName: document.getElementById('contactName').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      members: members,
-      total: total
-    };
-
-    try {
-      if (SCRIPT_URL.startsWith("PASTE_")) {
-        throw new Error("Backend not configured yet");
-      }
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-      document.getElementById('successAmount').textContent = `₹${total.toLocaleString('en-IN')}`;
-      document.getElementById('successPaymentSection').classList.toggle('hidden', total <= 0);
-
-      document.getElementById('formScreen').classList.add('hidden');
-      document.getElementById('successScreen').style.display = 'block';
-      window.scrollTo(0,0);
-    } catch (err) {
-      alert("Something went wrong submitting your registration. Please try again, or contact Mr. David Joseph at 96770 62540.\n\n(If you're the site admin: make sure SCRIPT_URL is set in index.html — see SETUP_INSTRUCTIONS.md)");
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Register Now →";
-    }
-  });
-</script>
 
 </body>
 </html>
